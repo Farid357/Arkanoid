@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdbab667338ec44089bb35d299c020f, type: 3}
+  m_Name: Yellow
+  m_EditorClassIdentifier: 
+  _prefub: {fileID: 8024756930018536187, guid: 95a17af781e528943b15a01b3a2f072b, type: 3}
+  _sprites:
+  - {fileID: -1541518193, guid: 8b60c83d5ce4a744db009d6c4f434d67, type: 3}
+  - {fileID: -811155986, guid: 8b60c83d5ce4a744db009d6c4f434d67, type: 3}
+  _color: {r: 1, g: 0.81903875, b: 0, a: 1}
+  _score: 35
