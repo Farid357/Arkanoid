@@ -8,13 +8,14 @@ public sealed class ScoreCollector : MonoBehaviour
     public int BestScore => _bestScore;
    
     private BinaryStorage _storage = new();
-    private const string Key = "Score";
+    private string _key;
     private int _bestScore;
     private int _scoreCount;
 
     private void OnEnable()
     {
-        _bestScore = _storage.Load(Key, _bestScore);
+        _key = Application.persistentDataPath + "Score";
+        _bestScore = _storage.Load(_key, _bestScore);
         BlockHealth.OnEnded += Add;
     }
     private void OnDisable()
@@ -38,6 +39,6 @@ public sealed class ScoreCollector : MonoBehaviour
     }
     private void Save()
     {
-        _storage.Save(Key, _bestScore);
+        _storage.Save(_key, _bestScore);
     }
 }

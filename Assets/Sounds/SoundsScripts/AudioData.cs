@@ -1,16 +1,22 @@
 
+using UnityEngine;
+
 public class AudioData
 {
-    private const string Key = "Musickey";
+    private readonly string _key;
 
     private AudioValues _audioValues = new();
     private PlayerPrefsStorage _storage = new();
 
+    public AudioData()
+    {
+        _key = Application.persistentDataPath + "Music";
+    }
     public AudioValues Load()
     {
-        if (_storage.Exists(Key))
+        if (_storage.Exists(_key))
         {
-            _audioValues = _storage.Load(Key, _audioValues);
+            _audioValues = _storage.Load(_key, _audioValues);
         }
         else
         {
@@ -35,7 +41,7 @@ public class AudioData
     }
     public void Save()
     {
-        _storage.Save(Key, _audioValues);
+        _storage.Save(_key, _audioValues);
     }
     private void CreateNew()
     {
