@@ -3,17 +3,15 @@ using UnityEngine;
 
 public class AudioData
 {
-    private readonly string _key;
+    private string _key;
 
     private AudioValues _audioValues = new();
     private PlayerPrefsStorage _storage = new();
-
-    public AudioData()
-    {
-        _key = Application.persistentDataPath + "Music";
-    }
+    
     public AudioValues Load()
     {
+        _key = Application.persistentDataPath + "Music";
+
         if (_storage.Exists(_key))
         {
             _audioValues = _storage.Load(_key, _audioValues);
@@ -41,6 +39,7 @@ public class AudioData
     }
     public void Save()
     {
+        _key = Application.persistentDataPath + "Music";
         _storage.Save(_key, _audioValues);
     }
     private void CreateNew()
