@@ -89,7 +89,7 @@ public sealed class LevelEditor : EditorWindow
     }
     public Block GetBlock()
     {
-        return _data.BlockDatas[_index].BlockData.Prefub;
+        return _data.BlockDatas[_index].BlockData.Prefab;
     }
     public BlockData GetBlockData()
     {

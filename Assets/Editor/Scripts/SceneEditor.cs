@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class SceneEditor : EditorWindow
 {
-    private readonly EditorGrid _editorGrid = new();
     private LevelEditor _editor;
     private Transform _parent;
 
@@ -12,33 +11,29 @@ public class SceneEditor : EditorWindow
         _editor = editor;
         _parent = parent;
     }
+
     public void OnSceneGUI(SceneView sceneView)
     {
         Event current = Event.current;
 
         if (current.type == EventType.MouseDown)
         {
-            Vector2 mousePoint = new(current.mousePosition.x, GetPositionY(current, sceneView));
-            Vector2 position = sceneView.camera.ScreenToWorldPoint(mousePoint);
-
-            if (_editorGrid.CheckPosition(position))
-            {
-                CreateBlock(position);
-            }
+            Vector2 mousePoint = current.mousePosition;
+            mousePoint.y = Screen.height - mousePoint.y - 36f;
+            mousePoint = sceneView.camera.ScreenToWorldPoint(mousePoint);
+            CreateBlock(mousePoint);
         }
+
         if (current.type == EventType.Layout)
         {
             HandleUtility.AddDefaultControl(GUIUtility.GetControlID(GetHashCode(), FocusType.Passive));
         }
     }
-    public float GetPositionY(Event current, SceneView sceneView)
-    {
-        return sceneView.camera.pixelHeight - current.mousePosition.y;
-    }
+
     private void CreateBlock(Vector2 position)
     {
-        Block block = (Block)PrefabUtility.InstantiatePrefab(_editor.GetBlock(), _parent);
-        block.transform.position = new Vector2(position.x + 3, position.y - 1);
+        Block block = Instantiate(_editor.GetBlock(), _parent);
+        block.transform.position = position;
         SetData(block);
     }
 
